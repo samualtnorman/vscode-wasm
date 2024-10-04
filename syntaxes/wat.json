@@ -38,20 +38,44 @@
           }
         },
         {
-          "comment": "Block comment",
-          "name": "comment.block.wat",
-          "begin": "\\(;",
-          "beginCaptures": {
-            "0": {
-              "name": "punctuation.definition.comment.wat"
-            }
-          },
-          "end": ";\\)",
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.definition.comment.wat"
-            }
-          }
+          "include": "#blockcomment"
+        }
+      ]
+    },
+    "blockcomment": {
+      "comment": "Block comment",
+      "name": "comment.block.wat",
+      "begin": "\\(;",
+      "end": ";\\)",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.wat"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.wat"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#blockchar"
+        }
+      ]
+    },
+    "blockchar": {
+      "patterns": [
+        {
+          "match": "[^;(]"
+        },
+        {
+          "match": ";(?!\\))"
+        },
+        {
+          "match": "\\((?!;)"
+        },
+        {
+          "include": "#blockcomment"
         }
       ]
     },
